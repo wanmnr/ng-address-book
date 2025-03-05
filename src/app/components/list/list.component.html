@@ -1,0 +1,39 @@
+<!-- list.component.ts -->
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contacts">
+        <td>{{ contact.id }}</td>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.email }}</td>
+        <td>{{ contact.phone }}</td>
+        <td>
+          <button
+            class="btn btn-sm btn-info me-2"
+            (click)="editContact(contact)"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-sm btn-danger"
+            (click)="deleteContact(contact.id)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="contacts.length === 0">
+        <td colspan="5" class="text-center">No contacts found</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
