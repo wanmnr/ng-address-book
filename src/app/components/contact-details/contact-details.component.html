@@ -1,0 +1,41 @@
+<!-- contact-details.component.html -->
+
+<div class="contact-card card shadow">
+  <div class="card-header bg-primary text-white">
+    <h3 class="m-0">Contact Details</h3>
+  </div>
+  <div class="card-body" *ngIf="contact">
+    <div class="contact-info">
+      <div class="info-row">
+        <div class="info-label">ID:</div>
+        <div class="info-value">{{ contact.id }}</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Name:</div>
+        <div class="info-value">{{ contact.name }}</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Email:</div>
+        <div class="info-value">
+          <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Phone:</div>
+        <div class="info-value">
+          <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body text-center" *ngIf="!contact">
+    <div class="alert alert-warning">
+      <i class="glyphicon glyphicon-exclamation-sign"></i> Contact not found
+    </div>
+  </div>
+  <div class="card-footer text-center">
+    <button class="btn btn-primary" (click)="goBack()">
+      <i class="glyphicon glyphicon-arrow-left"></i> Back
+    </button>
+  </div>
+</div>

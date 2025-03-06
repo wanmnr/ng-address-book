@@ -1,0 +1,68 @@
+/* contact-details.component.css */
+
+.contact-card {
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  border: none;
+}
+
+.card-header {
+  padding: 15px 20px;
+}
+
+.card-header h3 {
+  font-weight: 500;
+}
+
+.contact-info {
+  padding: 10px 0;
+}
+
+.info-row {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  padding: 15px 10px;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  width: 100px;
+  font-weight: bold;
+  color: #555;
+}
+
+.info-value {
+  flex-grow: 1;
+}
+
+.info-value a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.info-value a:hover {
+  text-decoration: underline;
+}
+
+.card-footer {
+  background-color: #f8f9fa;
+  padding: 15px;
+}
+
+.btn {
+  padding: 8px 20px;
+  font-weight: 500;
+}
+
+.shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.alert {
+  margin-bottom: 0;
+}
