@@ -1,12 +1,11 @@
 // app.component.ts
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AddressBookComponent } from './components/addressbook/addressbook.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AddressBookComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
