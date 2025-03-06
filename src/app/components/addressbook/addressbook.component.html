@@ -1,6 +1,6 @@
 <!-- addressbook.component.html -->
-<app-form></app-form>
+<app-form #formComponent></app-form>
 <br />
 <hr />
 <br />
-<app-list></app-list>
+<app-list (editRequest)="formComponent.setContact($event)"></app-list>
