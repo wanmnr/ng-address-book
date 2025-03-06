@@ -34,7 +34,7 @@ export class ListComponent implements OnInit {
   }
 
   viewContact(id: number): void {
-    //
+    this.router.navigate(['/contact', id]);
   }
 
   updateContact(contact: Contact): void {
