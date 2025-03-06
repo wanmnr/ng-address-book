@@ -7,6 +7,7 @@ import { Contact } from '../models/address-book.models';
 })
 export class AddressbookService {
   private contacts: Contact[] = [];
+  private nextId: number = 1;
 
   constructor() {}
 
@@ -19,14 +20,23 @@ export class AddressbookService {
   }
 
   addContact(contact: Contact): void {
+    contact.id = this.nextId++;
     this.contacts.push(contact);
   }
 
-  updateContact(index: number, contact: Contact): void {
-    //
+  updateContact(updatedContact: Contact): void {
+    const index = this.contacts.findIndex(
+      (contact) => contact.id === updatedContact.id
+    );
+    if (index !== -1) {
+      this.contacts[index] = updatedContact;
+    }
   }
 
-  deleteContact(index: number): void {
-    this.contacts.splice(index, 1);
+  deleteContact(id: number): void {
+    const index = this.contacts.findIndex((contact) => contact.id === id);
+    if (index !== -1) {
+      this.contacts.splice(index, 1);
+    }
   }
 }
