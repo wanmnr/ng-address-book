@@ -1,6 +1,6 @@
 // form.component.ts
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Contact } from '../../models/address-book.models';
 import { CommonModule } from '@angular/common';
 import { AddressbookService } from '../../services/addressbook.service';
@@ -13,18 +13,35 @@ import { AddressbookService } from '../../services/addressbook.service';
   styleUrl: './form.component.css',
 })
 export class FormComponent {
-  model = new Contact(0, 'John Doe', 'example@mail.com', '+6013-5353130');
   submitted = false;
+  isEditMode = false;
 
   constructor(private addressbookService: AddressbookService) {}
 
-  onSubmit() {
-    this.addressbookService.addContact({ ...this.model });
+  model = new Contact(0, '', '', '');
+
+  onSubmit(form: NgForm) {
+    if (this.isEditMode) {
+      this.addressbookService.updateContact(this.model);
+    } else {
+      this.addressbookService.addContact({ ...this.model });
+    }
     this.submitted = true;
+    this.reset(form);
   }
 
-  newContact() {
+  setContact(contact: Contact) {
+    this.model = { ...contact };
+    this.isEditMode = true;
+  }
+
+  reset(form?: NgForm) {
     this.model = new Contact();
     this.submitted = false;
+    this.isEditMode = false;
+
+    if (form) {
+      form.resetForm(this.model);
+    }
   }
 }

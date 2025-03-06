@@ -1,8 +1,10 @@
 <!-- form.component.html -->
 <div class="container">
   <div [hidden]="submitted">
-    <h1>Contact Form</h1>
-    <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+    <h1>@if (isEditMode) {Edit Contact} @else {Add New Contact}</h1>
+    <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+      <!-- Hidden ID field -->
+      <input type="hidden" [(ngModel)]="model.id" name="id" />
       <div
         class="form-group"
         [class.has-error]="name.invalid && (name.dirty || name.touched)"
@@ -75,6 +77,7 @@
           type="tel"
           class="form-control"
           id="phone"
+          placeholder="Enter phone number"
           required
           pattern="(\+?6?01)[0-46-9]-*[0-9]{7,8}"
           [(ngModel)]="model.phone"
@@ -103,36 +106,17 @@
           class="btn btn-success"
           [disabled]="!contactForm.form.valid"
         >
-          Submit
+          @if (isEditMode) {Update} @else {Submit}
         </button>
         &nbsp;
         <button
           type="button"
           class="btn btn-default"
-          (click)="newContact(); contactForm.reset()"
+          (click)="reset(contactForm)"
         >
-          Reset Form
+          @if (isEditMode) {Cancel} @else {Reset Form}
         </button>
       </div>
     </form>
-  </div>
-  <div [hidden]="!submitted">
-    <h2>You submitted the following:</h2>
-    <div class="row">
-      <div class="col-xs-3">Name</div>
-      <div class="col-xs-9">{{ model.name }}</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">Email</div>
-      <div class="col-xs-9">{{ model.email }}</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">Phone Number</div>
-      <div class="col-xs-9">{{ model.phone }}</div>
-    </div>
-    <br />
-    <button type="button" class="btn btn-primary" (click)="submitted = false">
-      Edit
-    </button>
   </div>
 </div>
